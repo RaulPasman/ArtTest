@@ -21,7 +21,10 @@ import time
 import urllib.parse
 import urllib.request
 
-FUENTE_HTML = "estilos-de-arte.html"
+CANDIDATOS_HTML = [
+    "estilos-de-arte.html", "Estilos-de-arte.html",
+    "duelo-de-cuadros.html", "Duelo-de-cuadros.html",
+]
 CARPETA_IMG = "img"
 MANIFEST = "img-manifest.json"
 ANCHO = 1200  # una sola resolución guardada; el navegador la achica si hace falta
@@ -40,6 +43,19 @@ NO_SIRVE = re.compile(
     r"stamp|coin|logo|building|exterior|street|museum of|bust of|statue|"
     r"map of the|\.svg|\.pdf|\.ogv|\.ogg|\.webm|\.djvu)", re.I)
 ES_IMG = re.compile(r"\.(jpe?g|png|tiff?|gif)$", re.I)
+
+
+def encontrar_fuente():
+    for c in CANDIDATOS_HTML:
+        if os.path.exists(c):
+            return c
+    presentes = sorted(f for f in os.listdir(".") if f.lower().endswith(".html"))
+    sys.exit(
+        "No encontré ninguno de estos archivos en la raíz del repo: "
+        + ", ".join(CANDIDATOS_HTML) + ".\n"
+        + "Archivos .html que sí hay en la raíz: "
+        + (", ".join(presentes) if presentes else "ninguno") + "."
+    )
 
 
 def leer_obras(path):
@@ -120,7 +136,7 @@ def por_titulo(lote):
     return out
 
 
-def por_busqueda(o):
+def por_busqueda(o, evitar):
     q = o["t"] + " " + o["ar"] + " painting"
     d = api(W_API, {"action": "query", "generator": "search", "gsrsearch": q,
                      "gsrlimit": "5", "gsrnamespace": "0", "prop": "pageimages",
@@ -129,12 +145,12 @@ def por_busqueda(o):
                   key=lambda p: p.get("index", 99))
     for p in pags:
         th = p.get("thumbnail", {}).get("source")
-        if th:
+        if th and th not in evitar:
             return th, pag_w(p.get("title", ""))
     return None, None
 
 
-def por_commons(consulta):
+def por_commons(consulta, evitar):
     d = api(C_API, {"action": "query", "generator": "search", "gsrsearch": consulta,
                      "gsrnamespace": "6", "gsrlimit": "14", "prop": "imageinfo",
                      "iiprop": "url", "iiurlwidth": str(ANCHO)})
@@ -146,7 +162,9 @@ def por_commons(consulta):
             continue
         ii = (p.get("imageinfo") or [None])[0]
         if ii:
-            return (ii.get("thumburl") or ii.get("url")), pag_c(titulo)
+            u = ii.get("thumburl") or ii.get("url")
+            if u and u not in evitar:
+                return u, pag_c(titulo)
     return None, None
 
 
@@ -157,8 +175,9 @@ def descargar(url, destino):
 
 
 def main():
-    obras = leer_obras(FUENTE_HTML)
-    print(f"{len(obras)} obras leídas de {FUENTE_HTML}")
+    fuente = encontrar_fuente()
+    obras = leer_obras(fuente)
+    print(f"{len(obras)} obras leídas de {fuente}")
     os.makedirs(CARPETA_IMG, exist_ok=True)
 
     manifest = [None] * len(obras)
@@ -184,24 +203,28 @@ def main():
         print(f"  lote {k}-{k+len(lote)}: {len(candidatos)} url candidatas hasta ahora")
         time.sleep(0.3)
 
+    usadas = set(u for (u, _) in candidatos.values())
+
     # 2) búsqueda individual para lo que no salió en el lote
     for o in obras:
         if o["i"] in ya or o["i"] in candidatos or es_solo_artista(o):
             continue
-        img_url, page_url = por_busqueda(o)
+        img_url, page_url = por_busqueda(o, usadas)
         if img_url:
             candidatos[o["i"]] = (img_url, page_url)
+            usadas.add(img_url)
         time.sleep(0.25)
 
     # 3) Commons por artista para lo que sigue sin url (incluye "solo artista")
     for o in obras:
         if o["i"] in ya or o["i"] in candidatos:
             continue
-        img_url, page_url = por_commons(o["ar"] + " " + o["s"])
+        img_url, page_url = por_commons(o["ar"] + " " + o["s"], usadas)
         if not img_url:
-            img_url, page_url = por_commons(o["ar"])
+            img_url, page_url = por_commons(o["ar"], usadas)
         if img_url:
             candidatos[o["i"]] = (img_url, page_url)
+            usadas.add(img_url)
         time.sleep(0.25)
 
     print(f"urls candidatas totales: {len(candidatos)} de {len(obras) - len(ya)} pendientes")
