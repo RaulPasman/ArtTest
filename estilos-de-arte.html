@@ -679,7 +679,23 @@ const SALAS = [
    rasgos:["Volumen real, no ilusión","Convive con el mueble","A veces se mueve o se enciende"],
    pal:["#1A1A1A","#C23B2E","#F2C230","#EDE8DD"],
    comprar:"Pensalo por dónde va a vivir (mesa, rincón, techo) antes que por la pared. Una sola pieza bien puesta reemplaza a varios objetos de decoración juntos.",
-   art:["Alexander Calder","Isamu Noguchi"]}
+   art:["Alexander Calder","Isamu Noguchi"]},
+
+  {id:"hilma_klint",n:"Hilma af Klint",a:"1906 – 1920",g:"Moderno",r:"Suecia",
+   lema:"Pintó la abstracción antes que nadie, y la escondió veinte años.",
+   t:"Empezó a pintar formas geométricas y espirales puras años antes que Kandinsky o Mondrian, a partir de sesiones espiritistas que hacía con otras cuatro mujeres. Convencida de que el mundo no estaba listo, dejó instrucciones de no exhibir su obra hasta veinte años después de su muerte. Hoy es, con enorme diferencia, el redescubrimiento más comentado del arte del siglo XX.",
+   rasgos:["Espirales y geometría simbólica","Paleta pastel con acentos primarios","Formato mural, muy grande"],
+   pal:["#D9A441","#5B7FA6","#C25B4A","#EDE3C8"],
+   comprar:"La paleta pastel-más-primario se lleva bien tanto con ambientes minimalistas como con los más cálidos. Formato grande, sin marco o con marco blanco fino: es de las obras que más sostienen una pared entera ella sola.",
+   art:["Hilma af Klint"]},
+
+  {id:"kusama",n:"Yayoi Kusama",a:"1950 – hoy",g:"Contemporáneo",r:"Japón",
+   lema:"El lunar repetido hasta el infinito.",
+   t:"Redes y lunares repetidos de manera obsesiva, salas de espejos que se sienten infinitas, calabazas gigantes a lunares. Empezó en Nueva York en los años 50, codeándose con el pop y el minimalismo, y se convirtió en una de las artistas vivas más reproducidas y fotografiadas del mundo. Ella misma explicó siempre la repetición como una forma personal de manejar visiones que tiene desde la infancia.",
+   rasgos:["Lunares y redes infinitas","Color plano y contundente","Repetición como técnica"],
+   pal:["#C23B2E","#F2C230","#111111","#F5F0E6"],
+   comprar:"El lunar rojo sobre fondo claro es el que mejor funciona como pieza única de pared; para el motivo de la calabaza amarilla, mejor un objeto o escultura chica que una lámina. Aporta color y humor sin volverse infantil.",
+   art:["Yayoi Kusama"]}
 ];
 
 const OBRAS = [
@@ -977,7 +993,15 @@ const OBRAS = [
   // Suma a salas ya existentes, para ampliar el espectro sin duplicar categoría
   {t:"Metaesquema",ar:"Hélio Oiticica",y:1958,s:"cinetico",w:"Hélio Oiticica"},
   {t:"Afiche HOPE",ar:"Shepard Fairey",y:2008,s:"street_art",w:"Shepard Fairey"},
-  {t:"Mosaico Space Invader",ar:"Invader",y:1998,s:"street_art",w:"Invader (artist)"}
+  {t:"Mosaico Space Invader",ar:"Invader",y:1998,s:"street_art",w:"Invader (artist)"},
+  // Hilma af Klint
+  {t:"Las diez más grandes, n.º 7",ar:"Hilma af Klint",y:1907,s:"hilma_klint",w:"The Ten Largest"},
+  {t:"El cisne, n.º 17",ar:"Hilma af Klint",y:1915,s:"hilma_klint",w:"Hilma af Klint"},
+  {t:"Retablo, n.º 1",ar:"Hilma af Klint",y:1915,s:"hilma_klint",w:"Hilma af Klint"},
+  // Yayoi Kusama
+  {t:"Calabaza",ar:"Yayoi Kusama",y:1994,s:"kusama",w:"Pumpkin (Kusama)"},
+  {t:"Sala de espejos infinita",ar:"Yayoi Kusama",y:1965,s:"kusama",w:"Infinity Mirror Room"},
+  {t:"Sin título (red de puntos)",ar:"Yayoi Kusama",y:1960,s:"kusama",w:"Yayoi Kusama"}
 ];
 
 OBRAS.forEach((o,i)=>{ o.id="o"+i; o.q=(o.t+" "+o.ar+" painting").replace(/\s+/g," "); });
