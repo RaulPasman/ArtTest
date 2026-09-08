@@ -587,7 +587,47 @@ const SALAS = [
    rasgos:["Series algorítmicas","Trazo de plotter","Variación controlada"],
    pal:["#111111","#E8E4DB","#C02A1E","#2C6E9B"],
    comprar:"Prints de plotter firmados o ediciones digitales impresas en gran formato. Marco blanco al ras, pared despejada. Muy buen fit para un escritorio de trabajo.",
-   art:["Vera Molnár","Manfred Mohr","Casey Reas","Refik Anadol"]}
+   art:["Vera Molnár","Manfred Mohr","Casey Reas","Refik Anadol"]},
+
+  {id:"recortes",n:"Recortes y color puro",a:"1943 – 1954",g:"Moderno",r:"Francia",
+   lema:"Dibujar con tijeras: formas de color recortadas y pegadas.",
+   t:"Cuando una operación le impidió seguir de pie frente al caballete, Matisse pasó a componer con papel pintado a mano, tijera y ayudantes que le sostenían las hojas. El resultado es más gráfico que pictórico: formas planas, bordes limpios, color sin degradé. Se lee casi como un afiche, y por eso hoy combina tan bien con muebles simples y paredes blancas.",
+   rasgos:["Formas recortadas","Color plano y saturado","Composición suelta, casi de collage"],
+   pal:["#1B4F8C","#E8622E","#3E8A5C","#F2E6C9"],
+   comprar:"Reproducción grande, sin marco o con marco blanco muy fino, sobre pared clara. Aporta mucho color sin la carga de una escena figurativa: funciona incluso en living chicos.",
+   art:["Henri Matisse"]},
+
+  {id:"posminimalismo_color",n:"Color en bloque, la generación siguiente",a:"1965 – 2000",g:"Contemporáneo",r:"Alemania y Estados Unidos",
+   lema:"Menos regla y más mano que el minimalismo duro.",
+   t:"Herederos del minimalismo que se permiten un poco más de gesto y de calidez: paños de color que no son perfectamente industriales, patrones que insinúan un ritmo pintado a mano, superficies que mosaican el color en vez de aplicarlo en una sola pasada. Es abstracción, pero nunca fría.",
+   rasgos:["Paños de color con textura propia","Formato grande","Paleta vibrante y cálida"],
+   pal:["#C23B2E","#F2A73B","#2E6E62","#F5EFDD"],
+   comprar:"Se banca protagonismo total en una pared: una sola pieza grande alcanza. Buena opción para quien quiere abstracción pero le resulta fría la línea dura del minimalismo clásico.",
+   art:["Blinky Palermo","Sol LeWitt","Alma Thomas"]},
+
+  {id:"botanica_moderna",n:"Botánica moderna a gran escala",a:"1919 – 1932",g:"Moderno",r:"Estados Unidos",
+   lema:"Una flor, acercada hasta volverse casi abstracta.",
+   t:"O'Keeffe agranda pétalos hasta que dejan de leerse como flor y empiezan a leerse como forma pura, color y curva. Es botánica solo en el punto de partida: el resultado convive perfecto con lo abstracto y es, probablemente, la entrada más amable a la abstracción para alguien que todavía no se anima del todo.",
+   rasgos:["Primer plano extremo","Curvas orgánicas","Color saturado y luminoso"],
+   pal:["#C23B6B","#E8A23B","#6E8C4A","#F7E8D4"],
+   comprar:"Formato grande, sin marco o con marco blanco. Es de los estilos más fáciles de convivir: colorido pero nunca agresivo, funciona en dormitorio y en living por igual.",
+   art:["Georgia O'Keeffe"]},
+
+  {id:"textil_arte",n:"Textil y fibra de autor",a:"1950 – hoy",g:"Contemporáneo",r:"Estados Unidos y Alemania",
+   lema:"La pared como telar, no como lienzo.",
+   t:"Lana, algodón, nudo y trama tratados con la ambición de la pintura: color por hilo en vez de por pincelada, relieve real en vez de ilusión de relieve. Viene de una tradición larga (el textil como oficio) que en el siglo XX se reclamó a sí misma como arte mayor, no menor.",
+   rasgos:["Relieve y textura real","Nudo y trama a la vista","Calidez de material"],
+   pal:["#8C5A3C","#C79A5B","#3E5C4B","#E8DCC4"],
+   comprar:"Absorbe sonido y baja el eco de ambientes con piso y techo duros. Va sin vidrio, pesa poco y se cuelga con la misma lógica que un tapiz: una barra arriba alcanza.",
+   art:["Sheila Hicks","Anni Albers"]},
+
+  {id:"escultura_diseno",n:"Escultura y objeto para la casa",a:"1930 – hoy",g:"Contemporáneo",r:"Estados Unidos",
+   lema:"Arte que no va en la pared: va en la mesa, o cuelga del techo.",
+   t:"La línea entre escultura y objeto de diseño se vuelve deliberadamente borrosa: un móvil que se mueve con el aire de la habitación, una lámpara que también es forma escultórica. Es la manera más directa de meter arte en una casa sin necesitar una sola pared libre.",
+   rasgos:["Volumen real, no ilusión","Convive con el mueble","A veces se mueve o se enciende"],
+   pal:["#1A1A1A","#C23B2E","#F2C230","#EDE8DD"],
+   comprar:"Pensalo por dónde va a vivir (mesa, rincón, techo) antes que por la pared. Una sola pieza bien puesta reemplaza a varios objetos de decoración juntos.",
+   art:["Alexander Calder","Isamu Noguchi"]}
 ];
 
 const OBRAS = [
@@ -862,7 +902,30 @@ const OBRAS = [
   {t:"Interruptions",ar:"Vera Molnár",y:1969,s:"generativo",w:"Vera Molnár"},
   {t:"P-196",ar:"Manfred Mohr",y:1977,s:"generativo",w:"Manfred Mohr"},
   {t:"Process series",ar:"Casey Reas",y:2005,s:"generativo",w:"Casey Reas"},
-  {t:"Machine Hallucinations",ar:"Refik Anadol",y:2019,s:"generativo",w:"Refik Anadol"}
+  {t:"Machine Hallucinations",ar:"Refik Anadol",y:2019,s:"generativo",w:"Refik Anadol"},
+  // Recortes (Matisse)
+  {t:"El caracol",ar:"Henri Matisse",y:1953,s:"recortes",w:"The Snail (Matisse)"},
+  {t:"Desnudo azul II",ar:"Henri Matisse",y:1952,s:"recortes",w:"Blue Nude II"},
+  {t:"Ícaro",ar:"Henri Matisse",y:1947,s:"recortes",w:"Icarus (Matisse)"},
+  {t:"El loro y la sirena",ar:"Henri Matisse",y:1952,s:"recortes",w:"The Parakeet and the Mermaid"},
+  // Color en bloque, la generación siguiente
+  {t:"Sin título (rojo)",ar:"Blinky Palermo",y:1970,s:"posminimalismo_color",w:"Blinky Palermo"},
+  {t:"Wall Drawing",ar:"Sol LeWitt",y:1999,s:"posminimalismo_color",w:"Sol LeWitt"},
+  {t:"Rosas rítmicas",ar:"Alma Thomas",y:1968,s:"posminimalismo_color",w:"Alma Thomas"},
+  // Botánica moderna (O'Keeffe)
+  {t:"Amapolas orientales",ar:"Georgia O'Keeffe",y:1928,s:"botanica_moderna",w:"Oriental Poppies"},
+  {t:"Cannas rojas",ar:"Georgia O'Keeffe",y:1927,s:"botanica_moderna",w:"Red Canna"},
+  {t:"Estramonio, flor blanca n.º 1",ar:"Georgia O'Keeffe",y:1932,s:"botanica_moderna",w:"Jimson Weed/White Flower No. 1"},
+  // Textil y fibra de autor
+  {t:"Bajorrelieve en hilo",ar:"Sheila Hicks",y:1967,s:"textil_arte",w:"Sheila Hicks"},
+  {t:"Escritura antigua",ar:"Anni Albers",y:1936,s:"textil_arte",w:"Anni Albers"},
+  // Escultura y objeto para la casa
+  {t:"Móvil",ar:"Alexander Calder",y:1945,s:"escultura_diseno",w:"Alexander Calder"},
+  {t:"Lámpara Akari",ar:"Isamu Noguchi",y:1951,s:"escultura_diseno",w:"Akari (lamp)"},
+  // Suma a salas ya existentes, para ampliar el espectro sin duplicar categoría
+  {t:"Metaesquema",ar:"Hélio Oiticica",y:1958,s:"cinetico",w:"Hélio Oiticica"},
+  {t:"Afiche HOPE",ar:"Shepard Fairey",y:2008,s:"street_art",w:"Shepard Fairey"},
+  {t:"Mosaico Space Invader",ar:"Invader",y:1998,s:"street_art",w:"Invader (artist)"}
 ];
 
 OBRAS.forEach((o,i)=>{ o.id="o"+i; o.q=(o.t+" "+o.ar+" painting").replace(/\s+/g," "); });
