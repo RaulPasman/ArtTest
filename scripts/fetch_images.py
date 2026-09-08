@@ -21,7 +21,10 @@ import time
 import urllib.parse
 import urllib.request
 
-FUENTE_HTML = "estilos-de-arte.html"
+CANDIDATOS_HTML = [
+    "estilos-de-arte.html", "Estilos-de-arte.html",
+    "duelo-de-cuadros.html", "Duelo-de-cuadros.html",
+]
 CARPETA_IMG = "img"
 MANIFEST = "img-manifest.json"
 ANCHO = 1200  # una sola resolución guardada; el navegador la achica si hace falta
@@ -40,6 +43,19 @@ NO_SIRVE = re.compile(
     r"stamp|coin|logo|building|exterior|street|museum of|bust of|statue|"
     r"map of the|\.svg|\.pdf|\.ogv|\.ogg|\.webm|\.djvu)", re.I)
 ES_IMG = re.compile(r"\.(jpe?g|png|tiff?|gif)$", re.I)
+
+
+def encontrar_fuente():
+    for c in CANDIDATOS_HTML:
+        if os.path.exists(c):
+            return c
+    presentes = sorted(f for f in os.listdir(".") if f.lower().endswith(".html"))
+    sys.exit(
+        "No encontré ninguno de estos archivos en la raíz del repo: "
+        + ", ".join(CANDIDATOS_HTML) + ".\n"
+        + "Archivos .html que sí hay en la raíz: "
+        + (", ".join(presentes) if presentes else "ninguno") + "."
+    )
 
 
 def leer_obras(path):
@@ -157,8 +173,9 @@ def descargar(url, destino):
 
 
 def main():
-    obras = leer_obras(FUENTE_HTML)
-    print(f"{len(obras)} obras leídas de {FUENTE_HTML}")
+    fuente = encontrar_fuente()
+    obras = leer_obras(fuente)
+    print(f"{len(obras)} obras leídas de {fuente}")
     os.makedirs(CARPETA_IMG, exist_ok=True)
 
     manifest = [None] * len(obras)
